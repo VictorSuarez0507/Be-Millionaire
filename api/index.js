@@ -1,20 +1,28 @@
 const express = require("express");
+const env = require("dotenv");
 const cors = require("cors");
 const errorHandler = require("./src/middleware/errorHandler");
 const connectDB = require("./src/database/db");
 const questionRoutes = require("./src/routes/questionsRoutes")
 
 const app = express();
-const port = 3000;
+env.config();
+const port = process.env.PORT || 3000;
 connectDB();
 
 app.use(express.json()); 
 app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
-app.use("/game", questionRoutes)
+app.use("/api/v1/game", questionRoutes)
 
 app.use(errorHandler);
 
+// app.listen(port, () => {
+//     console.log(`Server listening in port http://localhost:${port}`)
+// });
+
+
 app.listen(port, () => {
-    console.log(`Server listening in port http://localhost:${port}`)
+    console.log(`Server listening in port https://be-millionaire-api.vercel.app/${port}`)
 });
