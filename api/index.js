@@ -18,6 +18,10 @@ app.use("/api/v1/game", questionRoutes)
 
 app.use(errorHandler);
 
+app.get("/", (req, res) => {
+    res.status(200).send("funciona");    
+})
+
 app.listen(port, () => {
     console.log(`Server listening in port http://localhost:${port}`)
 });
