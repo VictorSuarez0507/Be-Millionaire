@@ -3,7 +3,7 @@ const env = require("dotenv");
 const cors = require("cors");
 const errorHandler = require("./src/middleware/errorHandler");
 const connectDB = require("./src/database/db");
-const questionRoutes = require("./src/routes/questionsRoutes");
+const questionRoutes = require("./src/routes/questions.routes");
 
 const app = express();
 env.config();

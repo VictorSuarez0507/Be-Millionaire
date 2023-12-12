@@ -12,7 +12,9 @@ export default function useGame () {
     const getQuestions = async () => {   
         
         try {
-            const response = await fetch(`http://localhost:3000/game/${nivel}`, {
+            //const response = await fetch(`http://localhost:3000/game/${nivel}`
+            
+            const response = await fetch(`https://be-millionaire-api.vercel.app/api/v1/game/${nivel}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'
