@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Box, Button, Container, Flex, FormControl, FormLabel, Text, VStack } from "@chakra-ui/react";
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Button, Container, FormControl, FormLabel, SimpleGrid, Text } from "@chakra-ui/react";
 import useGame from "../../hooks/useGame";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert"
@@ -47,8 +46,6 @@ export default function NivelDos () {
     nextLevel();
     return (
         <Container 
-            w='100%' 
-            h='800px'
             align="center"
         >
             <Text 
@@ -65,95 +62,62 @@ export default function NivelDos () {
             </Text> 
             {tasks.map((task) => (
                 <Box align="center" key={task._id}>
-                    <Flex 
-                        mt="100px"
-                        minWidth='540px'
-                        maxH="200px"
-                        justifyContent="center" 
-                        fontSize="3xl" 
-                        color="blackAlpha.900"
-                        backgroundColor="white"
-                        borderRadius="10px"
-                    >
-                        <Text >{task.title}</Text>
-                    </Flex>
-                    <Grid
+                <SimpleGrid columns={[1]} spacing='40px'>
+                <Box 
                     mt="50px"
-                        templateRows='repeat(2, 1fr)'
-                        templateColumns='repeat(4, 1fr)'
-                        gap={4}
-                    >
-                        <GridItem colSpan={2}>
-                            <Button  
-                                minWidth='250px' 
-                                minHeight='50px' 
-                                value={task.answerA} 
-                                onClick={handleQuestion}
-                            >
-                                A: {task.answerA}
-                            </Button>
-                        </GridItem>
-                        <GridItem colSpan={2} >
-                            <Button 
-                                minWidth='250px' 
-                                minHeight='50px' 
-                                ml='10' 
-                                value={task.answerB} 
-                                onClick={handleQuestion}
-                            >
-                                B: {task.answerB}
-                            </Button>
-                        </GridItem>
-                        <GridItem colSpan={2} >
-                            <Button 
-                                minWidth='250px' 
-                                minHeight='50px' 
-                                value={task.answerC} 
-                                onClick={handleQuestion}
-                            >
-                                C: {task.answerC}
-                            </Button>
-                        </GridItem>
-                        <GridItem colSpan={2}   >
-                            <Button 
-                                minWidth='250px' 
-                                minHeight='50px' 
-                                ml='10' 
-                                value={task.answerD} 
-                                onClick={handleQuestion}
-                            >
-                                D: {task.answerD}
-                            </Button>
-                        </GridItem>
-                    </Grid>
-                </Box>
-            ))}
-            <VStack>
-                <Box w='50%' 
                     justifyContent="center" 
-                    alignContent="center"
-                    mt='50px'>
-                    <FormControl>
-                        <FormLabel 
-                            htmlFor="premio"
-                            textColor="white"
-                        >
-                            Premio Acumulado
-                        </FormLabel>
-                        <Button 
-                            id="premio"
-                            align="center" 
-                            
-                            fontSize="4xl"
-                            minWidth='250px' 
-                            minHeight='50px'
-                            
-                        >
-                            {getReward()}
-                        </Button> 
-                    </FormControl>
+                    fontSize="3xl" 
+                    color="blackAlpha.900"
+                    backgroundColor="white"
+                    borderRadius="10px"
+                >
+                    <Text >{task.title}</Text>
                 </Box>
-            </VStack>
+                </SimpleGrid>
+                <SimpleGrid columns={[1, 2]} spacing='40px' mt="50px">
+                    <Button                
+                        value={task.answerA} 
+                        onClick={handleQuestion}
+                    >
+                        A: {task.answerA}
+                    </Button>
+                    <Button                   
+                        value={task.answerB} 
+                        onClick={handleQuestion}
+                    >
+                        B: {task.answerB}
+                    </Button>
+                    <Button                              
+                        value={task.answerC} 
+                        onClick={handleQuestion}
+                    >
+                        C: {task.answerC}
+                    </Button>
+                    <Button    
+                        value={task.answerD} 
+                        onClick={handleQuestion}
+                    >
+                        D: {task.answerD}
+                    </Button>                       
+                </SimpleGrid>
+            </Box>
+            ))}
+            <SimpleGrid columns={[1]} spacing='40px' mt="70px">
+                <FormControl>
+                    <FormLabel 
+                        htmlFor="premio"
+                        textColor="white"
+                    >
+                        Premio Acumulado
+                    </FormLabel>
+                    <Button 
+                        id="premio"                               
+                        fontSize="4xl"          
+                    >
+                        {getReward()}
+                    </Button>                            
+                </FormControl> 
+            </SimpleGrid>
         </Container>
 
     );

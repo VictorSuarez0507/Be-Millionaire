@@ -1,6 +1,8 @@
 #root {
   text-align: center;
   background-color: rgb(7, 7, 45);
+  background-size: cover;
+  height: 100vh;
 }
 
 

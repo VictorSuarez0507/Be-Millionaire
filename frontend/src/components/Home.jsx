@@ -39,8 +39,6 @@ export default function Home () {
 
     return (
         <Container 
-            w='100%' 
-            h='800px'
             align="center"
         >               
             <Box  padding="30px">

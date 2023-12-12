@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Box, Button, Container, Flex, FormControl, FormLabel, Text, VStack } from "@chakra-ui/react";
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Button, Container, FormControl, FormLabel, SimpleGrid, Text} from "@chakra-ui/react";
 import useGame from "../../hooks/useGame";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -47,7 +46,87 @@ export default function NivelUno () {
 
     }
     nextLevel();
+
     return (
+        <Container 
+            align="center"
+        >
+            <Text 
+                textColor="whiteAlpha.900" 
+                fontSize="2xl"
+            >
+                Jugador: {userName}
+            </Text>
+            <Text 
+                textColor="whiteAlpha.900" 
+                fontSize="2xl"
+            >
+                Nivel Uno
+            </Text> 
+            {tasks.map((task) => (              
+                <Box align="center" key={task._id}>
+                    <SimpleGrid columns={[1]} spacing='40px'>
+                    <Box 
+                        mt="50px"
+                        justifyContent="center" 
+                        fontSize="3xl" 
+                        color="blackAlpha.900"
+                        backgroundColor="white"
+                        borderRadius="10px"
+                    >
+                        <Text >{task.title}</Text>
+                    </Box>
+                    </SimpleGrid>
+                    <SimpleGrid columns={[1, 2]} spacing='40px' mt="50px">
+                        <Button                
+                            value={task.answerA} 
+                            onClick={handleQuestion}
+                        >
+                            A: {task.answerA}
+                        </Button>
+                        <Button                   
+                            value={task.answerB} 
+                            onClick={handleQuestion}
+                        >
+                            B: {task.answerB}
+                        </Button>
+                        <Button                              
+                            value={task.answerC} 
+                            onClick={handleQuestion}
+                        >
+                            C: {task.answerC}
+                        </Button>
+                        <Button    
+                            value={task.answerD} 
+                            onClick={handleQuestion}
+                        >
+                            D: {task.answerD}
+                        </Button>                       
+                    </SimpleGrid>
+                </Box>             
+            ))}
+            <SimpleGrid columns={[1]} spacing='40px' mt="70px">
+                <FormControl>
+                    <FormLabel 
+                        htmlFor="premio"
+                        textColor="white"
+                    >
+                        Premio Acumulado
+                    </FormLabel>
+                    <Button 
+                        id="premio"                               
+                        fontSize="4xl"          
+                    >
+                        {getReward()}
+                    </Button>                            
+                </FormControl> 
+            </SimpleGrid>
+        </Container>
+    );
+}
+    /**
+    return (
+        
         <Container 
             w='100%' 
             h='800px'
@@ -159,4 +238,4 @@ export default function NivelUno () {
         </Container>
 
     );
-}
+    */

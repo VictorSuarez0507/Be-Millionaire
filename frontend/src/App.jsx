@@ -12,7 +12,7 @@ function App() {
     window.location.hash="Again-No-back-button" //chrome bloquear el boton para retroceder
 
     window.onhashchange=function(){
-        window.location.hash = "no-back";
+        window.location.hash = "";
     }
   }
 
