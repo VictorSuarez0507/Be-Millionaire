@@ -4,6 +4,9 @@ const { createQuestions, getNivelUno} = require("../controllers/questionControll
 const Router = express.Router();
 
 //outer.get("/", getQuestions);
+Router.get("/", (req, res) => {
+    res.status(200).send("funciona en la ruta");    
+})
 Router.get("/:id", getNivelUno);
 Router.post("/newtask", createQuestions);
 
